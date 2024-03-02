@@ -2,37 +2,184 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retro Forum</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retro Forum</title>
 
-    <!-- font link -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
-        rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
+  <!-- font link -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
 
-    <!-- DaisyUi and Tailwind custom -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
+  <!-- DaisyUi and Tailwind custom -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <style>
-        .font-mulish {
-            font-family: "Mulish", sans-serif;
-        }
+  <style>
+    .font-mulish {
+      font-family: "Mulish", sans-serif;
+    }
 
-        .font-inter {
-            font-family: "Inter", sans-serif;
-        }
-    </style>
+    .font-inter {
+      font-family: "Inter", sans-serif;
+    }
+  </style>
 </head>
 
 <body>
-    
-    
+
+  <header class="container mx-auto my-5 w-10/12 lg:w-4/5 font-mulish">
+    <!-- nav starts -->
+    <div class="navbar bg-base-100">
+      <div class="navbar-start">
+        <div class="dropdown">
+          <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+            </svg>
+          </div>
+          <ul tabindex="0" class="menu menu-sm dropdown-content z-[1] shadow p-0 rounded-box w-16">
+
+            <ul class="menu menu-horizontal mt-6 gap-2">
+              <li>
+                <a class="tooltip border rounded-box bg-base-100" data-tip="Home">
+                  <img src="images/Home.svg" alt="">
+                </a>
+              </li>
+
+              <li>
+                <a class="tooltip border rounded-box bg-base-100" data-tip="Edit">
+                  <img src="images/Edit.svg" alt="">
+                </a>
+              </li>
+
+              <li>
+                <a class="tooltip border rounded-box bg-base-100" data-tip="Add">
+                  <img src="images/Add.svg" alt="">
+                </a>
+              </li>
+
+              <li>
+                <a class="tooltip border rounded-box bg-base-100" data-tip="Flag">
+                  <img src="images/Flag.svg" alt="">
+                </a>
+              </li>
+            </ul>
+
+        </div>
+        <a class="btn btn-ghost lg:text-5xl font-extrabold text-xl">ReTro</a>
+      </div>
+
+      <div class="navbar-center hidden lg:flex ml-[590px]">
+        <ul class="menu menu-horizontal mt-6 gap-2">
+          <li>
+            <a class="tooltip border rounded-box bg-base-100" data-tip="Home">
+              <img src="images/Home.svg" alt="">
+            </a>
+          </li>
+
+          <li>
+            <a class="tooltip border rounded-box bg-base-100" data-tip="Edit">
+              <img src="images/Edit.svg" alt="">
+            </a>
+          </li>
+
+          <li>
+            <a class="tooltip border rounded-box bg-base-100" data-tip="Add">
+              <img src="images/Add.svg" alt="">
+            </a>
+          </li>
+
+          <li>
+            <a class="tooltip border rounded-box bg-base-100" data-tip="Flag">
+              <img src="images/Flag.svg" alt="">
+            </a>
+          </li>
+
+        </ul>
+      </div>
+      <div class="navbar-end lg:mt-5 lg:mr-16">
+        <a class="btn lg:w-[100px] bg-[#797DFC] text-white rounded-[50px] lg:text-xl">Sign In</a>
+      </div>
+    </div>
+    <!-- nav ends -->
+
+    <!-- banner starts -->
+    <div class="hero h-[550px] lg:w-[1170px] bg-[url(./images/bgbanner.png)] bg-[#12132D] rounded-2xl mt-6 lg:mt-10">
+      <!-- <div class="hero-overlay bg-opacity-60"></div> -->
+      <div class="hero-content text-neutral-content ">
+        <div class="flex flex-col lg:flex-row lg:justify-between">
+
+          <div class="lg:mr-80 mb-10">
+            <h1 class="mb-5 lg:text-5xl text-3xl text-white font-extrabold">Welcome to the <br><span
+                class="text-[#797DFC]">ReTro</span> Forum</h1>
+            <p class="mb-5 text-base lg:text-xl">Share your favorite opinion and win and wp <br>forum coffee mug!</p>
+
+            <label class="input input-bordered flex items-center gap-2 lg:w-auto w-[230px]">
+              <input type="text" class="grow" placeholder="Search" />
+              <span><button
+                  class="btn btn-primary lg:ml-0 ml-[-60px] h-[34px] bg-[#797DFC] text-white rounded-xl lg:text-base">Search</button></span>
+            </label>
+          </div>
+
+          <div class="border-2 lg:p-12 p-4 lg:shadow-lg bg-white rounded-2xl">
+            <p class="flex lg:flex-row justify-between lg:gap-10 text-black lg:text-2xl lg:mb-2">Registered Users <span
+                class="">01</span></p>
+            <p class="flex lg:flex-row justify-between lg:gap-10 text-black lg:text-2xl lg:mb-2">Forum <span
+                class="">05</span></p>
+            <p class="flex lg:flex-row justify-between lg:gap-10 text-black lg:text-2xl lg:mb-2">Topics <span
+                class="">01</span></p>
+            <p class="flex lg:flex-row justify-between lg:gap-10 text-black lg:text-2xl lg:mb-2">Replies <span
+                class="">01</span></p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- banner ends -->
+
+  </header>
+
+  <main class="container mx-auto my-5 w-10/12 lg:w-4/5">
+
+    <section class="text-center my-24">
+
+      <!-- discuss starts -->
+      <div>
+        <h2 class="text-2xl lg:text-4xl font-manrope font-extrabold mt-8 lg:mt-6">Let’s Discuss</h2>
+        <p class="text-[#13131899] lg:mt-4">Yes, you can run unit tests and view the results directly within the app. The <br>integrated testing features allow for a streamlined .</p>
+    </div>
+
+    <div class="">
+
+      <div>
+
+      </div>
+
+      <div>
+
+      </div>
+    </div>
+      <!-- discuss ends -->
+
+    </section>
+
+    <section>
+      <!-- posts starts -->
+      <!-- posts ends -->
+
+    </section>
+
+  </main>
+
+  <footer>
+
+  </footer>
 
 </body>
 
