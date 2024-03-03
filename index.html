@@ -114,7 +114,6 @@
 
     <!-- banner starts -->
     <div class="hero h-[550px] lg:w-[1170px] bg-[url(./images/bgbanner.png)] bg-[#12132D] rounded-2xl mt-6 lg:mt-10">
-      <!-- <div class="hero-overlay bg-opacity-60"></div> -->
       <div class="hero-content text-neutral-content ">
         <div class="flex flex-col lg:flex-row lg:justify-between">
 
@@ -123,11 +122,13 @@
                 class="text-[#797DFC]">CaféR</span> Forum</h1>
             <p class="mb-5 text-base lg:text-xl">Share your favorite opinion and win and wp <br>forum coffee mug!</p>
 
-            <label class="input input-bordered flex items-center gap-2 lg:w-auto w-[230px]">
-              <input type="text" class="grow" placeholder="Search" />
-              <span><button id="handleSearch()"
-                  class="btn btn-primary lg:ml-0 ml-[-60px] h-[34px] bg-[#797DFC] text-white rounded-xl lg:text-base">Search</button></span>
+            <!-- search button -->
+            <label class="input input-bordered flex items-center gap-2 lg:w-auto w-[230px] rounded-full text-black">
+              <input id="search-field" type="text" class="grow" placeholder="Search" />
+              <span><button onclick="handleSearch()"
+                  class="btn btn-primary lg:mr-[-17px] ml-[-60px] h-[34px] bg-[#797DFC] text-white rounded-full lg:text-base">Search</button></span>
             </label>
+
           </div>
 
           <div class="border-2 lg:p-12 p-4 lg:shadow-lg bg-white rounded-2xl">
@@ -144,6 +145,14 @@
         </div>
       </div>
     </div>
+
+    <div id="loading-spinner" class="text-center hidden">
+      <span class="loading loading-spinner loading-xs"></span>
+      <span class="loading loading-spinner loading-sm"></span>
+      <span class="loading loading-spinner loading-md"></span>
+      <span class="loading loading-spinner loading-lg"></span>
+    </div>
+
     <!-- banner ends -->
 
   </header>
@@ -160,229 +169,10 @@
           The <br>integrated testing features allow for a streamlined .</p>
       </div>
 
-      <div id="discuss-container" class="mt-10 flex flex-col lg:flex-row justify-evenly">
+      <div class="mt-10 flex flex-col lg:flex-row justify-evenly">
 
-        <div class="">
+        <div id="discuss-container">
 
-          <div class="card lg:w-[700px] bg-base-100 bg-[#797dfc1a] border-2 mb-6">
-            <div class="stat-figure text-secondary lg:mr-[600px] lg:mt-6">
-              <div class="avatar online">
-                <div class="w-16 rounded-xl">
-                  <img src="" class="border-2 bg-white" />
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="flex flex-col lg:flex-row gap-20 lg:mt-[-100px]">
-                <h2 class="lg:ml-20 font-inter"># Music</h2>
-                <h2 class="font-inter lg:mt-0 mt-[-50px]">Author : Awlad Hossain</h2>
-              </div>
-              <p class="lg:text-left lg:ml-20 font-mulish font-bold">10 Kids Unaware of Their Halloween Costume</p>
-              <p class="lg:text-left lg:ml-20 font-mulish">It’s one thing to subject yourself to ha Halloween costume
-                mishap because, hey that’s your prerogative</p>
-              <hr class="border-dotted border lg:w-[570px] lg:ml-20">
-
-              <div class="flex flex-col lg:flex-row justify-evenly">
-
-                <div class="flex flex-col lg:flex-row">
-                  <img src="images/message.svg" alt="" class="lg:ml-18 lg:w-auto w-[50px] ml-20">
-                  <p class="lg:ml-2 lg:mt-3">560</p>
-                </div>
-
-                <div class="flex flex-col lg:flex-row">
-                  <img src="images/eye.svg" alt="" class="lg:ml-1 lg:w-[30px] w-[50px] ml-20">
-                  <p class="lg:ml-2 lg:mt-3">1,568</p>
-                </div>
-
-                <div class="flex flex-col lg:flex-row">
-                  <img src="images/clock.svg" alt="" class="lg:ml-1 lg:w-[30px] w-[50px] ml-20">
-                  <p class="lg:ml-2 lg:mt-3">5 min</p>
-                </div>
-
-                <div class="card-actions justify-end">
-                  <button class="btn  lg:mr-0 mr-16 rounded-full w-[58px] h-[58px]"><img src="images/email.svg" alt="" class=""></button>
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-
-          <div class="card lg:w-[700px] bg-base-100 bg-[#797dfc1a] border-2 mb-6">
-            <div class="stat-figure text-secondary lg:mr-[600px] lg:mt-6">
-              <div class="avatar online">
-                <div class="w-16 rounded-xl">
-                  <img src="" class="border-2 bg-white" />
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="flex flex-col lg:flex-row gap-20 lg:mt-[-100px]">
-                <h2 class="lg:ml-20 font-inter"># Music</h2>
-                <h2 class="font-inter lg:mt-0 mt-[-50px]">Author : Awlad Hossain</h2>
-              </div>
-              <p class="lg:text-left lg:ml-20 font-mulish font-bold">10 Kids Unaware of Their Halloween Costume</p>
-              <p class="lg:text-left lg:ml-20 font-mulish">It’s one thing to subject yourself to ha Halloween costume
-                mishap because, hey that’s your prerogative</p>
-              <hr class="border-dotted border lg:w-[570px] lg:ml-20">
-
-              <div class="flex flex-col lg:flex-row justify-evenly">
-
-                <div class="flex flex-col lg:flex-row">
-                  <img src="images/message.svg" alt="" class="lg:ml-18 lg:w-auto w-[50px] ml-20">
-                  <p class="lg:ml-2 lg:mt-3">560</p>
-                </div>
-
-                <div class="flex flex-col lg:flex-row">
-                  <img src="images/eye.svg" alt="" class="lg:ml-1 lg:w-[30px] w-[50px] ml-20">
-                  <p class="lg:ml-2 lg:mt-3">1,568</p>
-                </div>
-
-                <div class="flex flex-col lg:flex-row">
-                  <img src="images/clock.svg" alt="" class="lg:ml-1 lg:w-[30px] w-[50px] ml-20">
-                  <p class="lg:ml-2 lg:mt-3">5 min</p>
-                </div>
-
-                <div class="card-actions justify-end">
-                  <button class="btn lg:mr-0 mr-16 rounded-full w-[58px] h-[58px]"><img src="images/email.svg" alt="" class=""></button>
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-
-          <div class="card lg:w-[700px] bg-base-100 bg-[#797dfc1a] border-2 mb-6">
-            <div class="stat-figure text-secondary lg:mr-[600px] lg:mt-6">
-              <div class="avatar online">
-                <div class="w-16 rounded-xl">
-                  <img src="" class="border-2 bg-white" />
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="flex flex-col lg:flex-row gap-20 lg:mt-[-100px]">
-                <h2 class="lg:ml-20 font-inter"># Music</h2>
-                <h2 class="font-inter lg:mt-0 mt-[-50px]">Author : Awlad Hossain</h2>
-              </div>
-              <p class="lg:text-left lg:ml-20 font-mulish font-bold">10 Kids Unaware of Their Halloween Costume</p>
-              <p class="lg:text-left lg:ml-20 font-mulish">It’s one thing to subject yourself to ha Halloween costume
-                mishap because, hey that’s your prerogative</p>
-              <hr class="border-dotted border lg:w-[570px] lg:ml-20">
-
-              <div class="flex flex-col lg:flex-row justify-evenly">
-
-                <div class="flex flex-col lg:flex-row">
-                  <img src="images/message.svg" alt="" class="lg:ml-18 lg:w-auto w-[50px] ml-20">
-                  <p class="lg:ml-2 lg:mt-3">560</p>
-                </div>
-
-                <div class="flex flex-col lg:flex-row">
-                  <img src="images/eye.svg" alt="" class="lg:ml-1 lg:w-[30px] w-[50px] ml-20">
-                  <p class="lg:ml-2 lg:mt-3">1,568</p>
-                </div>
-
-                <div class="flex flex-col lg:flex-row">
-                  <img src="images/clock.svg" alt="" class="lg:ml-1 lg:w-[30px] w-[50px] ml-20">
-                  <p class="lg:ml-2 lg:mt-3">5 min</p>
-                </div>
-
-                <div class="card-actions justify-end">
-                  <button class="btn lg:mr-0 mr-16 rounded-full w-[58px] h-[58px]"><img src="images/email.svg" alt="" class=""></button>
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-
-          <div class="card lg:w-[700px] bg-base-100 bg-[#797dfc1a] border-2 mb-6">
-            <div class="stat-figure text-secondary lg:mr-[600px] lg:mt-6">
-              <div class="avatar online">
-                <div class="w-16 rounded-xl">
-                  <img src="" class="border-2 bg-white" />
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="flex flex-col lg:flex-row gap-20 lg:mt-[-100px]">
-                <h2 class="lg:ml-20 font-inter"># Music</h2>
-                <h2 class="font-inter lg:mt-0 mt-[-50px]">Author : Awlad Hossain</h2>
-              </div>
-              <p class="lg:text-left lg:ml-20 font-mulish font-bold">10 Kids Unaware of Their Halloween Costume</p>
-              <p class="lg:text-left lg:ml-20 font-mulish">It’s one thing to subject yourself to ha Halloween costume
-                mishap because, hey that’s your prerogative</p>
-              <hr class="border-dotted border lg:w-[570px] lg:ml-20">
-
-              <div class="flex flex-col lg:flex-row justify-evenly">
-
-                <div class="flex flex-col lg:flex-row">
-                  <img src="images/message.svg" alt="" class="lg:ml-18 lg:w-auto w-[50px] ml-20">
-                  <p class="lg:ml-2 lg:mt-3">560</p>
-                </div>
-
-                <div class="flex flex-col lg:flex-row">
-                  <img src="images/eye.svg" alt="" class="lg:ml-1 lg:w-[30px] w-[50px] ml-20">
-                  <p class="lg:ml-2 lg:mt-3">1,568</p>
-                </div>
-
-                <div class="flex flex-col lg:flex-row">
-                  <img src="images/clock.svg" alt="" class="lg:ml-1 lg:w-[30px] w-[50px] ml-20">
-                  <p class="lg:ml-2 lg:mt-3">5 min</p>
-                </div>
-
-                <div class="card-actions justify-end">
-                  <button class="btn lg:mr-0 mr-16 rounded-full w-[58px] h-[58px]"><img src="images/email.svg" alt="" class=""></button>
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-
-          <div class="card lg:w-[700px] bg-base-100 bg-[#797dfc1a] border-2 mb-6">
-            <div class="stat-figure text-secondary lg:mr-[600px] lg:mt-6">
-              <div class="avatar online">
-                <div class="w-16 rounded-xl">
-                  <img src="" class="border-2 bg-white" />
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="flex flex-col lg:flex-row gap-20 lg:mt-[-100px]">
-                <h2 class="lg:ml-20 font-inter"># Music</h2>
-                <h2 class="font-inter lg:mt-0 mt-[-50px]">Author : Awlad Hossain</h2>
-              </div>
-              <p class="lg:text-left lg:ml-20 font-mulish font-bold">10 Kids Unaware of Their Halloween Costume</p>
-              <p class="lg:text-left lg:ml-20 font-mulish">It’s one thing to subject yourself to ha Halloween costume
-                mishap because, hey that’s your prerogative</p>
-              <hr class="border-dotted border lg:w-[570px] lg:ml-20">
-
-              <div class="flex flex-col lg:flex-row justify-evenly">
-
-                <div class="flex flex-col lg:flex-row">
-                  <img src="images/message.svg" alt="" class="lg:ml-18 lg:w-auto w-[50px] ml-20">
-                  <p class="lg:ml-2 lg:mt-3">560</p>
-                </div>
-
-                <div class="flex flex-col lg:flex-row">
-                  <img src="images/eye.svg" alt="" class="lg:ml-1 lg:w-[30px] w-[50px] ml-20">
-                  <p class="lg:ml-2 lg:mt-3">1,568</p>
-                </div>
-
-                <div class="flex flex-col lg:flex-row">
-                  <img src="images/clock.svg" alt="" class="lg:ml-1 lg:w-[30px] w-[50px] ml-20">
-                  <p class="lg:ml-2 lg:mt-3">5 min</p>
-                </div>
-
-                <div class="card-actions justify-end">
-                  <button class="btn lg:mr-0 mr-16 rounded-full w-[58px] h-[58px]"><img src="images/email.svg" alt="" class=""></button>
-                </div>
-
-              </div>
-
-            </div>
-          </div>
 
         </div>
 
@@ -461,79 +251,10 @@
           the app. The <br>integrated testing features allow for a streamlined .</p>
       </div>
 
-      <!-- <div class="flex flex-col lg:flex-row justify-evenly"> -->
 
-        <div id="posts-container" class="flex flex-col lg:flex-row justify-evenly gap-4">
-          <!-- <div class="card lg:w-96 bg-base-100 shadow-xl mt-10 border-2">
-            <figure class="px-10 pt-10">
-              <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt=""
-                class="rounded-xl" />
-            </figure>
-            <div class="card-body gap-4">
-              <div class="flex flex-col lg:flex-row justify-start">
-                <img src="images/calander.svg" alt="" class="lg:w-auto w-[30px]">
-                <p class="lg:mr-[150px] text-base text-[#12132D99] lg:mt-[0px] mt-[-25px]">29 January 2024</p>
-              </div>
-              <p class="text-start font-bold">What will a mars habitat force that impact in our daily life!!!</p>
-              <p class="text-start text-[#12132D99]">Yes, you can run unit tests and view the results directly within
-                the app. </p>
-              <div class="card-actions">
-                <img src="images/man.svg" alt="" class="lg:ml-[0px] ml-[80px]">
-                <h3 class="font-bold lg:ml-[0px] ml-[20px]">Cameron Williamson</h3>
-                <p class="mt-[20px] lg:text-left lg:ml-[-166px] ml-[-166px] text-[#12132D99]">Unknown</p>
-              </div>
-            </div>
-          </div>
-        </div> -->
-
-        <!-- <div>
-          <div class="card lg:w-96 bg-base-100 shadow-xl mt-10 border-2">
-            <figure class="px-10 pt-10">
-              <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt=""
-                class="rounded-xl" />
-            </figure>
-            <div class="card-body gap-4">
-              <div class="flex flex-col lg:flex-row justify-start">
-                <img src="images/calander.svg" alt="" class="lg:w-auto w-[30px]">
-                <p class="lg:mr-[150px] text-base text-[#12132D99] lg:mt-[0px] mt-[-25px]">29 January 2024</p>
-              </div>
-              <p class="text-start font-bold">What will a mars habitat force that impact in our daily life!!!</p>
-              <p class="text-start text-[#12132D99]">Yes, you can run unit tests and view the results directly within
-                the app. </p>
-              <div class="card-actions">
-                <img src="images/man.svg" alt="" class="lg:ml-[0px] ml-[80px]">
-                <h3 class="font-bold lg:ml-[0px] ml-[20px]">Cameron Williamson</h3>
-                <p class="mt-[20px] lg:text-left lg:ml-[-166px] ml-[-166px] text-[#12132D99]">Unknown</p>
-              </div>
-            </div>
-          </div>
-        </div> -->
-
-        <!-- <div>
-          <div class="card lg:w-96 bg-base-100 shadow-xl mt-10 border-2">
-            <figure class="px-10 pt-10">
-              <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt=""
-                class="rounded-xl" />
-            </figure>
-            <div class="card-body gap-4">
-              <div class="flex flex-col lg:flex-row justify-start">
-                <img src="images/calander.svg" alt="" class="lg:w-auto w-[30px]">
-                <p class="lg:mr-[150px] text-base text-[#12132D99] lg:mt-[0px] mt-[-25px]">29 January 2024</p>
-              </div>
-              <p class="text-start font-bold">What will a mars habitat force that impact in our daily life!!!</p>
-              <p class="text-start text-[#12132D99]">Yes, you can run unit tests and view the results directly within
-                the app. </p>
-              <div class="card-actions">
-                <img src="images/man.svg" alt="" class="lg:ml-[0px] ml-[80px]">
-                <h3 class="font-bold lg:ml-[0px] ml-[20px]">Cameron Williamson</h3>
-                <p class="mt-[20px] lg:text-left lg:ml-[-166px] ml-[-166px] text-[#12132D99]">Unknown</p>
-              </div>
-            </div>
-          </div>
-        </div> -->
+      <div id="posts-container" class="flex flex-col lg:flex-row justify-evenly gap-4">
 
       </div>
-    <!-- </div> -->
 
       <!-- posts ends -->
 

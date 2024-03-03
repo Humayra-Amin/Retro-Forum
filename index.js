@@ -1,5 +1,5 @@
-const loadPosts = async() => {
-    const res = await fetch(' https://openapi.programming-hero.com/api/retro-forum/latest-posts');
+const loadPosts = async () => {
+    const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts');
     const data = await res.json();
     const posts = data;
     displayPosts(posts);
@@ -8,16 +8,16 @@ const loadPosts = async() => {
 
 const displayPosts = posts => {
     // console.log(posts);
-    
-//1. id ana
-const postContainer = document.getElementById('posts-container');
+
+    //1. id ana
+    const postContainer = document.getElementById('posts-container');
 
     posts.forEach(post => {
         console.log(post);
         //2. create a div
         const postCard = document.createElement('div');
         postCard.classList = `card lg:w-96 bg-base-100 shadow-xl mt-10 border-2`;
-        
+
         //3. search innerHtml
         postCard.innerHTML = `
       <figure class="px-10 pt-10">
@@ -28,9 +28,8 @@ const postContainer = document.getElementById('posts-container');
           <img src="images/calander.svg" alt="" class="lg:w-auto w-[30px]">
           <p class="lg:mr-[150px] text-base text-[#12132D99] lg:mt-[0px] mt-[-25px]">${post.author.posted_date ? post.author.posted_date : "No Publish Date"}</p>
         </div>
-        <p class="text-start font-bold">What will a mars habitat force that impact in our daily life!!!</p>
-        <p class="text-start text-[#12132D99]">Yes, you can run unit tests and view the results directly within
-          the app. </p>
+        <p class="text-start font-bold">${post.title}</p>
+        <p class="text-start text-[#12132D99]">${post.description}</p>
         <div class="card-actions">
           <img src="${post.profile_image}" alt="" class="lg:ml-[0px] ml-[80px] w-[44px] lg:w-[44px] lg:h-[44px] rounded-full">
           <h3 class="font-bold lg:ml-[0px] ml-[60px]">${post.author.name}</h3>
@@ -39,10 +38,107 @@ const postContainer = document.getElementById('posts-container');
       </div> 
       `;
 
-      //4. append child
-      postContainer.appendChild(postCard);
-      
+        //4. append child
+        postContainer.appendChild(postCard);
+
     })
 }
 
 loadPosts();
+
+
+const loadDiscusses = async (searchText) => {
+    const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/posts');
+    // const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`);
+    const data = await res.json();
+    const discusses = data.posts;
+    // console.log(discusses);
+    displayDiscusses(discusses);
+}
+
+const loadAllPost = async (searchText) => {
+    // const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/posts');
+    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`);
+    const data = await res.json();
+    const discusses = data.posts;
+    // console.log(discusses);
+    displayDiscusses(discusses);
+}
+
+const displayDiscusses = discusses => {
+    // console.log(discusses);
+
+    //1. id ana
+    const discussContainer = document.getElementById('discuss-container');
+    discussContainer.textContent = '';
+  
+    discusses.forEach(discuss => {
+        console.log(discuss);
+        //2. create a div
+        const discussCard = document.createElement('div');
+        discussCard.classList = `card lg:w-[700px] bg-base-100 bg-[#797dfc1a] border-2 mb-6`;
+
+        //3. search innerHtml
+        discussCard.innerHTML = `
+        <div class="stat-figure text-secondary lg:mr-[600px] lg:mt-6">
+              <div class="avatar online">
+                <div class="w-16 rounded-xl">
+                  <img src="${discuss.image}" class="border-2 bg-white" />
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="flex flex-col lg:flex-row gap-20 lg:mt-[-100px]">
+                <h2 class="lg:ml-20 font-inter">${discuss.category}</h2>
+                <h2 class="font-inter lg:mt-0 mt-[-50px]">${discuss.author.name}</h2>
+              </div>
+              <p class="lg:text-left lg:ml-20 font-mulish font-bold">${discuss.title}</p>
+              <p class="lg:text-left lg:ml-20 font-mulish">${discuss.description}</p>
+              <hr class="border-dotted border lg:w-[570px] lg:ml-20">
+
+              <div class="flex flex-col lg:flex-row justify-evenly">
+
+                <div class="flex flex-col lg:flex-row">
+                  <img src="images/message.svg" alt="" class="lg:ml-18 lg:w-auto w-[50px] ml-20">
+                  <p class="lg:ml-2 lg:mt-4">${discuss.comment_count}</p>
+                </div>
+
+                <div class="flex flex-col lg:flex-row">
+                  <img src="images/eye.svg" alt="" class="lg:ml-1 lg:w-[30px] w-[50px] ml-20">
+                  <p class="lg:ml-2 lg:mt-4">${discuss.view_count}</p>
+                </div>
+
+                <div class="flex flex-col lg:flex-row">
+                  <img src="images/clock.svg" alt="" class="lg:ml-1 lg:w-[30px] w-[50px] ml-20">
+                  <p class="lg:ml-2 lg:mt-4">${discuss.posted_time}</p>
+                </div>
+
+                <div class="card-actions justify-end">
+                  <button class="btn  lg:mr-0 mr-16 rounded-full w-[58px] h-[58px]"><img src="images/email.svg" alt="" class=""></button>
+                </div>
+                
+              </div>
+            </div>
+      `;
+
+        //4. append child
+          discussContainer.appendChild(discussCard);
+
+    })
+}
+
+// handle search button
+const handleSearch = () => {
+    const searchField = document.getElementById('search-field');
+    const searchText =searchField.value;
+    console.log(searchText)
+    loadAllPost(searchText);
+}
+
+const toggleLoadingSpinner = () =>{
+    
+}
+
+loadDiscusses();
+
+
