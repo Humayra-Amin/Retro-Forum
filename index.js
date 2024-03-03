@@ -42,7 +42,7 @@ const displayPosts = posts => {
 loadPosts();
 
 
-const loadDiscusses = async (searchText) => {
+const loadDiscusses = async () => {
     const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/posts');
     const data = await res.json();
     const discusses = data.posts;
@@ -71,11 +71,12 @@ const displayDiscusses = discusses => {
 
         discussCard.innerHTML = `
         <div class="stat-figure text-secondary lg:mr-[600px] lg:mt-6">
-              <div class="avatar online">
-                <div class="w-16 rounded-xl">
-                  <img src="${discuss.image}" class="border-2 bg-white" />
-                </div>
+           <div class="avatar indicator">
+               <span class="indicator-item badge ${discuss.isActive ? "bg-green-600" : "bg-red-600"}"></span> 
+              <div class="w-16 rounded-xl">
+                <img src="${discuss.image}" class="border-2 bg-white" />
               </div>
+            </div>
             </div>
             <div class="card-body">
               <div class="flex flex-col lg:flex-row gap-20 lg:mt-[-100px]">
@@ -145,5 +146,8 @@ const toggleLoadingSpinner = (isLoading) => {
 // } , 2000)
 
 loadDiscusses();
+
+
+
 
 
