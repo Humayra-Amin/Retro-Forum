@@ -63,7 +63,7 @@ const displayDiscusses = discusses => {
 
     const discussContainer = document.getElementById('discuss-container');
     discussContainer.textContent = '';
-  
+
     discusses.forEach(discuss => {
         console.log(discuss);
         const discussCard = document.createElement('div');
@@ -110,26 +110,39 @@ const displayDiscusses = discusses => {
               </div>
             </div>
       `;
-          discussContainer.appendChild(discussCard);
-
+        discussContainer.appendChild(discussCard);
     })
+
+    //hide loading spinner
+    toggleLoadingSpinner(false);
 }
 
 // handle search button
 const handleSearch = () => {
     toggleLoadingSpinner(true);
-    const searchField = document.getElementById('search-field');
-    const searchText =searchField.value;
-    console.log(searchText)
-    loadAllPost(searchText);
+    setTimeout(() => {
+        const searchField = document.getElementById('search-field');
+        const searchText = searchField.value;
+        console.log(searchText)
+        loadAllPost(searchText);
+        console.log(toggleLoadingSpinner)
+    }, 2000)
+
 }
 
-const toggleLoadingSpinner = (isLoading) =>{
+const toggleLoadingSpinner = (isLoading) => {
     const loadingSpinner = document.getElementById('loading-spinner');
-    if(isLoading){
+    if (isLoading) {
         loadingSpinner.classList.remove('hidden');
     }
+    else {
+        loadingSpinner.classList.add('hidden');
+    }
 }
+
+// setTimeout( () =>{
+//     console.log(toggleLoadingSpinner)
+// } , 2000)
 
 loadDiscusses();
 
