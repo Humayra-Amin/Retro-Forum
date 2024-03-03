@@ -9,16 +9,13 @@ const loadPosts = async () => {
 const displayPosts = posts => {
     // console.log(posts);
 
-    //1. id ana
     const postContainer = document.getElementById('posts-container');
 
     posts.forEach(post => {
         console.log(post);
-        //2. create a div
         const postCard = document.createElement('div');
         postCard.classList = `card lg:w-96 bg-base-100 shadow-xl mt-10 border-2`;
 
-        //3. search innerHtml
         postCard.innerHTML = `
       <figure class="px-10 pt-10">
         <img src="${post.cover_image}" alt="" class="rounded-xl" />
@@ -37,8 +34,6 @@ const displayPosts = posts => {
         </div>
       </div> 
       `;
-
-        //4. append child
         postContainer.appendChild(postCard);
 
     })
@@ -49,7 +44,6 @@ loadPosts();
 
 const loadDiscusses = async (searchText) => {
     const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/posts');
-    // const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`);
     const data = await res.json();
     const discusses = data.posts;
     // console.log(discusses);
@@ -57,7 +51,6 @@ const loadDiscusses = async (searchText) => {
 }
 
 const loadAllPost = async (searchText) => {
-    // const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/posts');
     const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`);
     const data = await res.json();
     const discusses = data.posts;
@@ -68,17 +61,14 @@ const loadAllPost = async (searchText) => {
 const displayDiscusses = discusses => {
     // console.log(discusses);
 
-    //1. id ana
     const discussContainer = document.getElementById('discuss-container');
     discussContainer.textContent = '';
   
     discusses.forEach(discuss => {
         console.log(discuss);
-        //2. create a div
         const discussCard = document.createElement('div');
         discussCard.classList = `card lg:w-[700px] bg-base-100 bg-[#797dfc1a] border-2 mb-6`;
 
-        //3. search innerHtml
         discussCard.innerHTML = `
         <div class="stat-figure text-secondary lg:mr-[600px] lg:mt-6">
               <div class="avatar online">
@@ -120,8 +110,6 @@ const displayDiscusses = discusses => {
               </div>
             </div>
       `;
-
-        //4. append child
           discussContainer.appendChild(discussCard);
 
     })
@@ -129,14 +117,18 @@ const displayDiscusses = discusses => {
 
 // handle search button
 const handleSearch = () => {
+    toggleLoadingSpinner(true);
     const searchField = document.getElementById('search-field');
     const searchText =searchField.value;
     console.log(searchText)
     loadAllPost(searchText);
 }
 
-const toggleLoadingSpinner = () =>{
-    
+const toggleLoadingSpinner = (isLoading) =>{
+    const loadingSpinner = document.getElementById('loading-spinner');
+    if(isLoading){
+        loadingSpinner.classList.remove('hidden');
+    }
 }
 
 loadDiscusses();
