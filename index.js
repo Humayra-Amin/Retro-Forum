@@ -105,7 +105,7 @@ const displayDiscusses = discusses => {
                 </div>
 
                 <div class="card-actions justify-end">
-                  <button class="btn  lg:mr-0 mr-16 rounded-full w-[58px] h-[58px]"><img src="images/email.svg" alt="" class=""></button>
+                  <button onclick="allPostRead('${discuss.title.replace("'","")}' , '${discuss.view_count}')" class="btn lg:mr-0 mr-16 rounded-full w-[58px] h-[58px]"><img src="images/email.svg" alt="" class=""></button>
                 </div>
                 
               </div>
@@ -117,6 +117,29 @@ const displayDiscusses = discusses => {
     //hide loading spinner
     toggleLoadingSpinner(false);
 }
+
+
+const allPostRead = async (title, view_count) => {
+  console.log(title, view_count);
+
+  const postReadContainer = document.getElementById('post-read-container');
+  const postCard = document.createElement('div');
+  // postCard.classList = `bg-slate-100 border-2 p-8 rounded-xl lg:h-auto`;
+
+  postCard.innerHTML = `
+  <div class="flex flex-col lg:flex-row justify-evenly items-center border-2 bg-white rounded-xl mt-4 lg:w-[380px] lg:h-[52px]">
+              <p class="font-medium lg:ml-4 lg:text-left">${title}</p>
+              <div class="flex flex-col lg:flex-row justify-evenly">
+                <img src="images/eye.svg" alt="" class="lg:ml-[1px] lg:w-[30px] w-[50px] ml-[75px]"><span class=" lg:mt-[4px]">${view_count}</span>
+                
+              </div>
+            </div>
+  `;
+  postReadContainer.appendChild(postCard);
+}
+
+
+
 
 // handle search button
 const handleSearch = () => {
