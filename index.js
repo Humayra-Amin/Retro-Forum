@@ -130,14 +130,13 @@ const allPostRead = async (title, view_count) => {
   <div class="flex flex-col lg:flex-row justify-evenly items-center border-2 bg-white rounded-xl mt-4 lg:w-[380px] lg:h-[52px]">
               <p class="font-medium lg:ml-4 lg:text-left">${title}</p>
               <div class="flex flex-col lg:flex-row justify-evenly">
-                <img src="images/eye.svg" alt="" class="lg:ml-[1px] lg:w-[30px] w-[50px] ml-[75px]"><span class=" lg:mt-[4px]">${view_count}</span>
+                <img src="images/eye.svg" alt="" class="lg:ml-[1px] lg:w-[30px] w-[50px] ml-[15px]"><span class=" lg:mt-[4px]">${view_count}</span>
                 
               </div>
             </div>
   `;
   postReadContainer.appendChild(postCard);
 }
-
 
 
 
