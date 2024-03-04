@@ -1,22 +1,23 @@
+// posts card part
 const loadPosts = async () => {
-    const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts');
-    const data = await res.json();
-    const posts = data;
-    displayPosts(posts);
+  const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts');
+  const data = await res.json();
+  const posts = data;
+  displayPosts(posts);
 }
 
 
 const displayPosts = posts => {
-    // console.log(posts);
+  // console.log(posts);
 
-    const postContainer = document.getElementById('posts-container');
+  const postContainer = document.getElementById('posts-container');
 
-    posts.forEach(post => {
-        console.log(post);
-        const postCard = document.createElement('div');
-        postCard.classList = `card lg:w-96 bg-base-100 shadow-xl mt-10 border-2`;
+  posts.forEach(post => {
+    console.log(post);
+    const postCard = document.createElement('div');
+    postCard.classList = `card lg:w-96 bg-base-100 shadow-xl mt-10 border-2`;
 
-        postCard.innerHTML = `
+    postCard.innerHTML = `
       <figure class="px-10 pt-10">
         <img src="${post.cover_image}" alt="" class="rounded-xl" />
       </figure>
@@ -34,42 +35,43 @@ const displayPosts = posts => {
         </div>
       </div> 
       `;
-        postContainer.appendChild(postCard);
+    postContainer.appendChild(postCard);
 
-    })
+  })
 }
 
 loadPosts();
 
 
+// discuss card part
 const loadDiscusses = async () => {
-    const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/posts');
-    const data = await res.json();
-    const discusses = data.posts;
-    // console.log(discusses);
-    displayDiscusses(discusses);
+  const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/posts');
+  const data = await res.json();
+  const discusses = data.posts;
+  // console.log(discusses);
+  displayDiscusses(discusses);
 }
 
 const loadAllPost = async (searchText) => {
-    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`);
-    const data = await res.json();
-    const discusses = data.posts;
-    // console.log(discusses);
-    displayDiscusses(discusses);
+  const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`);
+  const data = await res.json();
+  const discusses = data.posts;
+  // console.log(discusses);
+  displayDiscusses(discusses);
 }
 
 const displayDiscusses = discusses => {
-    // console.log(discusses);
+  // console.log(discusses);
 
-    const discussContainer = document.getElementById('discuss-container');
-    discussContainer.textContent = '';
+  const discussContainer = document.getElementById('discuss-container');
+  discussContainer.textContent = '';
 
-    discusses.forEach(discuss => {
-        console.log(discuss);
-        const discussCard = document.createElement('div');
-        discussCard.classList = `card lg:w-[700px] bg-base-100 bg-[#797dfc1a] border-2 mb-6`;
+  discusses.forEach(discuss => {
+    console.log(discuss);
+    const discussCard = document.createElement('div');
+    discussCard.classList = `card lg:w-[700px] bg-base-100 bg-[#797dfc1a] border-2 mb-6`;
 
-        discussCard.innerHTML = `
+    discussCard.innerHTML = `
         <div class="stat-figure text-secondary lg:mr-[600px] lg:mt-6">
            <div class="avatar indicator">
                <span class="indicator-item badge ${discuss.isActive ? "bg-green-600" : "bg-red-600"}"></span> 
@@ -105,22 +107,31 @@ const displayDiscusses = discusses => {
                 </div>
 
                 <div class="card-actions justify-end">
-                  <button onclick="allPostRead('${discuss.title.replace("'","")}' , '${discuss.view_count}')" class="btn lg:mr-0 mr-16 rounded-full w-[58px] h-[58px]"><img src="images/email.svg" alt="" class=""></button>
+                  <button onclick="allPostRead('${discuss.title.replace("'", "")}' , '${discuss.view_count}')" class="btn lg:mr-0 mr-16 rounded-full w-[58px] h-[58px]"><img src="images/email.svg" alt="" class=""></button>
                 </div>
                 
               </div>
             </div>
       `;
-        discussContainer.appendChild(discussCard);
-    })
+    discussContainer.appendChild(discussCard);
+  })
 
-    //hide loading spinner
-    toggleLoadingSpinner(false);
+
+  //hide loading spinner
+  toggleLoadingSpinner(false);
 }
 
 
+
+//discuss mark as read card part
+let count = 0;
+
 const allPostRead = async (title, view_count) => {
   console.log(title, view_count);
+
+  count++;
+
+  updateCount(count);
 
   const postReadContainer = document.getElementById('post-read-container');
   const postCard = document.createElement('div');
@@ -131,36 +142,45 @@ const allPostRead = async (title, view_count) => {
               <p class="font-medium lg:ml-4 lg:text-left">${title}</p>
               <div class="flex flex-col lg:flex-row justify-evenly">
                 <img src="images/eye.svg" alt="" class="lg:ml-[1px] lg:w-[30px] w-[50px] ml-[15px]"><span class=" lg:mt-[4px]">${view_count}</span>
-                
               </div>
             </div>
   `;
   postReadContainer.appendChild(postCard);
+
+}
+
+
+// mark as read counting part
+const updateCount = (counting) => {
+  const spanCount = document.getElementById('count');
+  spanCount.textContent = `(${counting})`;
+
 }
 
 
 
 // handle search button
 const handleSearch = () => {
-    toggleLoadingSpinner(true);
-    setTimeout(() => {
-        const searchField = document.getElementById('search-field');
-        const searchText = searchField.value;
-        console.log(searchText)
-        loadAllPost(searchText);
-        console.log(toggleLoadingSpinner)
-    }, 2000)
+  toggleLoadingSpinner(true);
+  setTimeout(() => {
+    const searchField = document.getElementById('search-field');
+    const searchText = searchField.value;
+    console.log(searchText)
+    loadAllPost(searchText);
+    console.log(toggleLoadingSpinner)
+  }, 2000)
 
 }
 
+// loading part
 const toggleLoadingSpinner = (isLoading) => {
-    const loadingSpinner = document.getElementById('loading-spinner');
-    if (isLoading) {
-        loadingSpinner.classList.remove('hidden');
-    }
-    else {
-        loadingSpinner.classList.add('hidden');
-    }
+  const loadingSpinner = document.getElementById('loading-spinner');
+  if (isLoading) {
+    loadingSpinner.classList.remove('hidden');
+  }
+  else {
+    loadingSpinner.classList.add('hidden');
+  }
 }
 
 // setTimeout( () =>{
